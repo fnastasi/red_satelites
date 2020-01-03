@@ -35,7 +35,7 @@ def ejercicio1(nobmre_sat,lat,lon,nombre_guardar="", tiempo_real = False):
     
     # Graficar todos los puntos al mismo tiempo
     if not tiempo_real:
-        m.scatter(lon,lat,latlon=True,s = 1)
+        print("")#m.scatter(lon,lat,latlon=True,s = 1)
     else:
         long1 = lon[0:10000]
         lat1 = lat[0:10000]
@@ -64,4 +64,4 @@ if __name__ == "__main__":
 
     filename = "Satellite-LEO_0003-To-Satellite-LEO_0000 SST+access.txt"
     tiempo,lat,lon,Rasc,Dec = get_lat_lon(filename)
-    ejercicio1("Satelite 0003",lat,lon,"ejercicio1")
+    ejercicio1("Satelite 0003",lat,lon)
