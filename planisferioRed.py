@@ -17,7 +17,7 @@ class  planisferioRed():
         self.n_col =  _n_col
         self.latitudes = np.linspace(self.latitud_ini, self.latitud_fin, self.n_fil+1)
         self.longitudes = np.linspace(self.longitud_ini, self.longitud_fin, self.n_col+1)
-        self.IP_map =  dict()
+        self.IP_map =  dict() # Se genera un diccionario con las IP como valores y con ci como las keys
         for i in range(self.n_fil * self.n_col):
             self.IP_map["c"+str(i)] = _IP_vec[i]
 
@@ -25,7 +25,7 @@ class  planisferioRed():
         return self.IP_map
 
     def get_cuad(self, coord_lon, coord_lat):
-        
+        # Se obtiene en que celda está segun las coordenadas de latitud y longitud
         for idx, lon in enumerate(self.longitudes):
 
             if coord_lon < lon:

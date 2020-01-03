@@ -23,57 +23,21 @@ def ejercicio2(n_fil=2,n_col=2):
     # Creación de un satelite
     sat = satelite.satelite("satelite_0003")
     
-    for line in fileinput.input("test.txt", inplace=True):
+    for line in fileinput.input("test.txt", inplace=True): # Recorro cada línea del archivo
         try:
-            l = line.lstrip()
-            valores =  np.array(line.split()).astype(float)
-            if valores.size != 0: # Cuando lees una línea vacía (o una línea lleno de espacios en blanco)
-                sat.coord_lat = valores[1]
+            valores =  np.array(line.split()).astype(float) # Parseo los valores
+            if valores.size != 0: # Cuando no lees una línea vacía (o una línea lleno de espacios en blanco)
+                sat.coord_lat = valores[1] # actualizo coordenadas del satélite
                 sat.coord_lon = valores[2]
-                cuad = p.get_cuad(sat.coord_lon,sat.coord_lat)
-                line = line[0:-1] + "                     " + p.IP_map[cuad]
+                cuad = p.get_cuad(sat.coord_lon,sat.coord_lat) #obtengo en que parte de la celda se encuentra el satélite
+                line = line[0:-1] + "                     " + p.IP_map[cuad] # Agrego a la línea la IP correspondiente
             else:
-                line = line[0:-1]
+                line = line[0:-1] # Si estaba vacía, dejo la línea igual (el '\n' lo pone print)
         except:
-            pass
+            pass # Si no pudo convertir a float, no hace nada
         finally:
-            print(line)
-    """ 
-    with open("test.txt", 'r+') as f:
-        
-        for line in fileinput.input("test.txt", inplace=True):
-            try:
-                line
-                print('{} {}'.format(fileinput.filelineno(), line), end='') # for Python 3
-        
-        
-        
-        line = f.readline()
-        while line:
-            try: # Para cuando lees una línea con letras
-                
-                line = line.lstrip()
-                valores =  np.array(line.split()).astype(float)
-                print(valores)
-                if valores.size != 0: # Cuando lees una línea vacía (o una línea lleno de espacios en blanco)
-                    
-                    sat.coord_lat = valores[1]
-                    sat.coord_lon = valores[2]
-                    cuad = p.get_cuad(sat.coord_lon,sat.coord_lat)
-                    line_aux = line + p.IP_map[cuad]
-                    print(line_aux)
-                    print(N)
-                    f.seek(N)
-                    f.write(line_aux)
-                    
-            except:
-                print("Hola")
-                pass
-            finally:
-                N = N + len(line) +1 
-                line = f.readline()
-    """
-        
+            print(line) # imprime la línea en el archivo
+    
     #for line in fileinput.input("test.txt", inplace=1):
     #    s = line.readline()
     #    print(s)
@@ -81,9 +45,3 @@ def ejercicio2(n_fil=2,n_col=2):
 
 if __name__ == "__main__":
     ejercicio2()
-    
-    
-    
-
-    #print('{} {}'.format(fileinput.filelineno(), line), end='') # for Python 3
-    # print "%d: %s" % (fileinput.filelineno(), line), # for Python 2
